@@ -6,23 +6,9 @@ import { Signup } from './Signup'
 
 export function App(){
     const [user, setUser] = useState()
-    /* 
-    if(user == null){
-        return window.location.pathname === '/signup'
-        ? <Signup singnUser = {setUser} />
-        : <Login singnUser = {setUser} />
-        
-    }else{
-        return <Home/>
-    }
-    */
-      
-    
-    //return <Login/>
-
     
     if(user){
-        return <Home />
+        return <Home loggedInUser={user}/>
     }
     
     return window.location.pathname === '/signup'

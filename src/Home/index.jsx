@@ -60,13 +60,13 @@ function Tweet({name, userName, avatar, children}){
   )
 }
 
-export const Home = () =>{
+export const Home = ({loggedInUser}) =>{
   const [data, setData] = useState([])
-  const token = ''
+
   async function getData(){
     const res = await axios.get('http://localhost:9901/tweets', {
       headers: {
-        'authorization':`Bearer ${token}`
+        'authorization':`Bearer ${loggedInUser.accessToken}`
       }
     })
     console.log("!!!! "+res)
@@ -83,7 +83,7 @@ export const Home = () =>{
       <TweetForm/>
       <div>
         {data.length && data.map(tweet => (
-          <Tweet name={tweet.user.name} userName={tweet.user.userName} avatar="/src/icon-user.png">
+          <Tweet key={tweet.id} name={tweet.user.name} userName={tweet.user.userName} avatar="/src/icon-user.png">
             {tweet.text}
           </Tweet>
         ))}
