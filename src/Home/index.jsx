@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 
 import { HeartIcon } from '@heroicons/react/outline'
-import { Formik, useFormik } from 'formik'
+import { useFormik } from 'formik'
 import axios from 'axios'
 
 const MAX_TWEET_CHAR = 140
@@ -13,7 +13,7 @@ function TweetForm({loggedInUser, onSuccess}){
    onSubmit: async (values, form) => {
     await axios({
         method: 'post',
-        url: 'http://localhost:9901/tweets',
+        url: `${import.meta.env.VITE_API_HOST}/tweets`,
         headers: {
           'authorization':`Bearer ${loggedInUser.accessToken}`
         },
@@ -91,7 +91,7 @@ export const Home = ({loggedInUser}) =>{
   const [data, setData] = useState([])
 
   async function getData(){
-    const res = await axios.get('http://localhost:9901/tweets', {
+    const res = await axios.get(`${import.meta.env.VITE_API_HOST}/tweets`, {
       headers: {
         'authorization':`Bearer ${loggedInUser.accessToken}`
       }
