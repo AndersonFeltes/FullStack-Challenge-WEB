@@ -109,7 +109,7 @@ export const Home = ({loggedInUser}) =>{
       <TweetForm loggedInUser={loggedInUser} onSuccess={getData}/>
       <div>
         {data.length && data.map(tweet => (
-          <Tweet key={tweet.id} name={tweet.user.name} userName={tweet.user.userName} avatar="./avatar.png">
+          <Tweet key={tweet.id} name={tweet.user.name} userName={tweet.user.userName} avatar={avatar}>
             {tweet.text}
           </Tweet>
         ))}
